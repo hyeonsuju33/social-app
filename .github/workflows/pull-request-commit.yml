@@ -27,7 +27,7 @@ env:
 jobs:
   # Populate this from main so every PR can restore the same trusted baseline.
   bundle-analyzer-base:
-    runs-on: ubuntu-24.04
+    runs-on: xenoci-2vcpu-ubuntu-2404
     if: ${{ github.event_name == 'push' }}
     permissions:
       contents: read
@@ -74,7 +74,7 @@ jobs:
 
   bundle-analyzer:
     name: Web bundle size and browser support
-    runs-on: ubuntu-24.04
+    runs-on: xenoci-2vcpu-ubuntu-2404
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.event_name == 'pull_request'}}
     permissions:
       contents: read
@@ -210,7 +210,7 @@ jobs:
             ---
 
   fingerprint-native:
-    runs-on: ubuntu-22.04
+    runs-on: xenoci-2vcpu-ubuntu-2404
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.event_name == 'pull_request'}}
     permissions:
       contents: read
@@ -318,7 +318,7 @@ jobs:
   publish-pr-ota:
     name: Publish PR OTA to denis
     needs: fingerprint-native
-    runs-on: ubuntu-latest
+    runs-on: xenoci-2vcpu-ubuntu-2404
     if: >-
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
@@ -425,7 +425,7 @@ jobs:
   comment-pr-ota:
     name: Comment PR OTA install link
     needs: publish-pr-ota
-    runs-on: ubuntu-latest
+    runs-on: xenoci-2vcpu-ubuntu-2404
     permissions:
       pull-requests: write
     steps:

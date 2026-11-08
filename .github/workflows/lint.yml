@@ -17,7 +17,7 @@ permissions:
 jobs:
   node-versions:
     name: Verify Node versions
-    runs-on: ubuntu-latest
+    runs-on: xenoci-2vcpu-ubuntu-2404
     steps:
       # Temporary until fixed runner images roll out:
       # https://github.com/actions/runner-images/issues/15018
@@ -62,7 +62,7 @@ jobs:
           exit $rc
   linting:
     name: Run linters
-    runs-on: ubuntu-latest
+    runs-on: xenoci-2vcpu-ubuntu-2404
     strategy:
       fail-fast: false
       matrix:
@@ -106,7 +106,7 @@ jobs:
     name: Run linters
     if: always()
     needs: [linting, node-versions]
-    runs-on: ubuntu-latest
+    runs-on: xenoci-2vcpu-ubuntu-2404
     steps:
       - name: ✅ Require linting to have succeeded
         env:
@@ -119,7 +119,7 @@ jobs:
           test "$NODE_VERSIONS_RESULT" = "success"
   testing:
     name: Run tests
-    runs-on: ubuntu-latest
+    runs-on: xenoci-2vcpu-ubuntu-2404
     strategy:
       fail-fast: false
       matrix:
@@ -155,7 +155,7 @@ jobs:
     name: Run tests
     if: always()
     needs: [testing]
-    runs-on: ubuntu-latest
+    runs-on: xenoci-2vcpu-ubuntu-2404
     steps:
       - name: ✅ Require testing to have succeeded
         env:

@@ -18,7 +18,7 @@ permissions:
 jobs:
   zizmor:
     name: Audit workflows with zizmor
-    runs-on: ubuntu-latest
+    runs-on: xenoci-2vcpu-ubuntu-2404
     steps:
       # Temporary until fixed runner images roll out:
       # https://github.com/actions/runner-images/issues/15018
